@@ -1,0 +1,3 @@
+Introspect caches to display groups
+
+Associate an UUID with a given cache so that we can offer cache operations (flush, clear, &c)
