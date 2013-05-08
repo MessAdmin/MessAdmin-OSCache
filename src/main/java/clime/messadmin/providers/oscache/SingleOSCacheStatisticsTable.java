@@ -44,7 +44,7 @@ class SingleOSCacheStatisticsTable extends BaseTabularDataProvider {
 
 	protected String getTableCaption(StatisticListenerImpl statistics) {
 		//FIXME add ajax links to: clearStatistics, flush/removeAll
-		List argsTableCaption = new ArrayList();
+		List<String> argsTableCaption = new ArrayList<String>();
 		PersistenceListener persistenceListener = statistics.cache.getPersistenceListener();
 		if (persistenceListener instanceof AbstractDiskPersistenceListener) {
 			argsTableCaption.add(StringUtils.escapeXml(persistenceListener.getClass().getName() + ' ' + ((AbstractDiskPersistenceListener)persistenceListener).getCachePath()));
@@ -67,7 +67,7 @@ class SingleOSCacheStatisticsTable extends BaseTabularDataProvider {
 		NumberFormat numberFormatter = NumberFormat.getNumberInstance(I18NSupport.getAdminLocale());
 		NumberFormat percentFormatter = NumberFormat.getPercentInstance(I18NSupport.getAdminLocale());
 		Cache cache = statistics.cache;
-		List data = new LinkedList();
+		List<Object> data = new LinkedList<Object>();
 
 		// Start by adding some of the cache properties
 
@@ -105,7 +105,7 @@ class SingleOSCacheStatisticsTable extends BaseTabularDataProvider {
 				numberFormatter.format(statistics.getEntriesUpdated()), null
 		});
 
-		Object[][] result = (Object[][]) data.toArray(new Object[data.size()][]);
+		Object[][] result = data.toArray(new Object[data.size()][]);
 		return result;
 	}
 }

@@ -93,9 +93,9 @@ public class StatisticListenerImpl implements CacheMapAccessEventListener,
 	private volatile int entriesUpdated = 0;
 
 	/* Using weak keys in case a cache is not {@link #finialize()}'ed (e.g. put in HttpSession) */
-	static final Map ALL_STATISTIC_LISTENERS = Collections.synchronizedMap(new WeakHashMap());
+	static final Map<StatisticListenerImpl,StatisticListenerImpl> ALL_STATISTIC_LISTENERS = Collections.<StatisticListenerImpl,StatisticListenerImpl>synchronizedMap(new WeakHashMap<StatisticListenerImpl,StatisticListenerImpl>());
 
-	Cache cache;
+	volatile Cache cache;
 
 	/**
 	 * Constructor, empty for us.
@@ -242,6 +242,7 @@ public class StatisticListenerImpl implements CacheMapAccessEventListener,
 	 *
 	 * @return String
 	 */
+	@Override
 	public String toString() {
 		return "StatisticListenerImpl: Hit = " + hitCount + " / " + hitCountSum
 				+ ", stale hit = " + staleHitCount + " / " + staleHitCountSum

@@ -3,14 +3,11 @@
  */
 package clime.messadmin.providers.oscache;
 
-import java.util.Iterator;
-
 import javax.servlet.ServletContext;
 
 import clime.messadmin.i18n.I18NSupport;
 import clime.messadmin.model.Server;
 import clime.messadmin.providers.spi.ApplicationDataProvider;
-import clime.messadmin.utils.Integers;
 import clime.messadmin.utils.StringUtils;
 
 /**
@@ -35,7 +32,7 @@ public class OSCacheStatistics implements ApplicationDataProvider {
 		final ClassLoader cl = Server.getInstance().getApplication(context).getApplicationInfo().getClassLoader();
 		int nCaches = StatisticListenerImpl.ALL_STATISTIC_LISTENERS.size();
 		return I18NSupport.getLocalizedMessage(BUNDLE_NAME, cl, "title", new Object[] {//$NON-NLS-1$
-				Integers.valueOf(nCaches)
+				Integer.valueOf(nCaches)
 		});
 	}
 
@@ -49,9 +46,7 @@ public class OSCacheStatistics implements ApplicationDataProvider {
 		final ClassLoader cl = Server.getInstance().getApplication(context).getApplicationInfo().getClassLoader();
 		StringBuffer result = new StringBuffer(512);
 		synchronized (StatisticListenerImpl.ALL_STATISTIC_LISTENERS) {
-			Iterator allStatsIter = StatisticListenerImpl.ALL_STATISTIC_LISTENERS.keySet().iterator();
-			while (allStatsIter.hasNext()) {
-				StatisticListenerImpl statistics = (StatisticListenerImpl) allStatsIter.next();
+			for (StatisticListenerImpl statistics : StatisticListenerImpl.ALL_STATISTIC_LISTENERS.keySet()) {
 				if (result.length() > 0) {// 2nd+ Cache
 					result.append("\n<hr/>\n");
 				}
