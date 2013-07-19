@@ -12,7 +12,6 @@ import javax.servlet.ServletContext;
 
 import clime.messadmin.i18n.I18NSupport;
 import clime.messadmin.providers.spi.BaseTabularDataProvider;
-import clime.messadmin.utils.Longs;
 import clime.messadmin.utils.StringUtils;
 
 import com.opensymphony.oscache.base.Cache;
@@ -76,7 +75,7 @@ class SingleOSCacheStatisticsTable extends BaseTabularDataProvider {
 		data.add(new Object[] {I18NSupport.getLocalizedMessage(BUNDLE_NAME, "ObjectCount"),//$NON-NLS-1
 				numberFormatter.format(cache.getSize()),
 				I18NSupport.getLocalizedMessage(BUNDLE_NAME, "ObjectCount.details",//$NON-NLS-1$
-						new Object[] { Longs.valueOf(cache.getCapacity()) }
+						new Object[] { Long.valueOf(cache.getCapacity()) }
 				)
 		});
 
