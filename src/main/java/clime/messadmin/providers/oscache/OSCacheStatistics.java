@@ -38,7 +38,7 @@ public class OSCacheStatistics implements ApplicationDataProvider {
 
 	/** {@inheritDoc} */
 	public int getPriority() {
-		return 0;
+		return 200;
 	}
 
 	/** {@inheritDoc} */
