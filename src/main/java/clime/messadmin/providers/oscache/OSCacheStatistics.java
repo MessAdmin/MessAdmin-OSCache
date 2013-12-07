@@ -6,7 +6,6 @@ package clime.messadmin.providers.oscache;
 import javax.servlet.ServletContext;
 
 import clime.messadmin.i18n.I18NSupport;
-import clime.messadmin.model.Server;
 import clime.messadmin.providers.spi.ApplicationDataProvider;
 import clime.messadmin.utils.StringUtils;
 
@@ -29,11 +28,11 @@ public class OSCacheStatistics implements ApplicationDataProvider {
 
 	/** {@inheritDoc} */
 	public String getApplicationDataTitle(ServletContext context) {
-		final ClassLoader cl = Server.getInstance().getApplication(context).getApplicationInfo().getClassLoader();
+		final ClassLoader cl = I18NSupport.getClassLoader(context);
 		int nCaches = StatisticListenerImpl.ALL_STATISTIC_LISTENERS.size();
-		return I18NSupport.getLocalizedMessage(BUNDLE_NAME, cl, "title", new Object[] {//$NON-NLS-1$
+		return I18NSupport.getLocalizedMessage(BUNDLE_NAME, cl, "title",//$NON-NLS-1$
 				Integer.valueOf(nCaches)
-		});
+		);
 	}
 
 	/** {@inheritDoc} */
@@ -43,7 +42,7 @@ public class OSCacheStatistics implements ApplicationDataProvider {
 
 	/** {@inheritDoc} */
 	public String getXHTMLApplicationData(ServletContext context) {
-		final ClassLoader cl = Server.getInstance().getApplication(context).getApplicationInfo().getClassLoader();
+//		final ClassLoader cl = I18NSupport.getClassLoader(context);
 		StringBuffer result = new StringBuffer(512);
 		synchronized (StatisticListenerImpl.ALL_STATISTIC_LISTENERS) {
 			for (StatisticListenerImpl statistics : StatisticListenerImpl.ALL_STATISTIC_LISTENERS.keySet()) {
